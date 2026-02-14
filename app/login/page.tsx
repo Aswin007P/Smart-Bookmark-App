@@ -150,15 +150,17 @@ export default function LoginPage() {
               </div>
             )}
 
-            {/* Google Sign-in Button with advanced animations */}
+            {/* Google Sign-in Button with fixed pointer cursor */}
             <button
               onClick={handleGoogleLogin}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
               className="relative w-full flex items-center justify-center gap-3 bg-gradient-to-r from-white to-gray-50 border-2 border-gray-200 rounded-xl px-6 py-4 text-gray-700 font-medium 
-                hover:border-transparent hover:shadow-2xl hover:scale-105
-                active:scale-95 active:shadow-lg
+                cursor-pointer
+                hover:border-transparent hover:shadow-2xl hover:scale-105 hover:from-gray-50 hover:to-white
+                active:scale-95 active:shadow-lg active:from-gray-100 active:to-gray-50
                 focus:outline-none focus:ring-4 focus:ring-blue-500/50
+                disabled:opacity-50 disabled:cursor-not-allowed
                 transition-all duration-300 group overflow-hidden"
             >
               {/* Animated background gradient */}
@@ -213,13 +215,13 @@ export default function LoginPage() {
 
             {/* Feature badges */}
             <div className="mt-6 flex justify-center gap-3">
-              <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs rounded-full animate-fade-in-up animation-delay-600 hover:scale-110 transition-transform">
+              <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs rounded-full animate-fade-in-up animation-delay-600 hover:scale-110 transition-transform cursor-default">
                 🚀 Realtime Sync
               </span>
-              <span className="px-3 py-1 bg-purple-50 text-purple-600 text-xs rounded-full animate-fade-in-up animation-delay-700 hover:scale-110 transition-transform">
+              <span className="px-3 py-1 bg-purple-50 text-purple-600 text-xs rounded-full animate-fade-in-up animation-delay-700 hover:scale-110 transition-transform cursor-default">
                 🔒 Secure
               </span>
-              <span className="px-3 py-1 bg-pink-50 text-pink-600 text-xs rounded-full animate-fade-in-up animation-delay-800 hover:scale-110 transition-transform">
+              <span className="px-3 py-1 bg-pink-50 text-pink-600 text-xs rounded-full animate-fade-in-up animation-delay-800 hover:scale-110 transition-transform cursor-default">
                 ⚡ Fast
               </span>
             </div>
