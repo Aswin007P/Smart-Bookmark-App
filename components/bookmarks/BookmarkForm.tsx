@@ -174,45 +174,43 @@ export default function BookmarkForm() {
         </div>
       </div>
 
-      {/* Submit Button */}
-      <button
-        type="submit"
-        disabled={loading || !userId}
-        className="relative w-full group overflow-hidden rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {/* Animated background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 group-hover:from-blue-700 group-hover:via-blue-800 group-hover:to-purple-700 transition-all duration-300" />
-        
-        {/* Shine effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-        
-        {/* Button content */}
-        <div className="relative flex items-center justify-center gap-2 py-3.5 px-4">
-          {loading ? (
-            <>
-              <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-              </svg>
-              <span className="text-white font-semibold">Adding Bookmark...</span>
-            </>
-          ) : (
-            <>
-              <svg className="w-5 h-5 text-white group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-              </svg>
-              <span className="text-white font-semibold">Add Bookmark</span>
-              <span className="absolute right-4 group-hover:translate-x-1 transition-transform">→</span>
-            </>
-          )}
-        </div>
+<button
+  type="submit"
+  disabled={loading || !userId}
+  className="relative w-full group overflow-hidden rounded-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+>
+  {/* Animated background */}
+  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 group-hover:from-blue-700 group-hover:via-blue-800 group-hover:to-purple-700 transition-all duration-300" />
+  
+  {/* Shine effect */}
+  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+  
+  {/* Button content */}
+  <div className="relative flex items-center justify-center gap-2 py-3.5 px-4">
+    {loading ? (
+      <>
+        <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+        </svg>
+        <span className="text-white font-semibold">Adding Bookmark...</span>
+      </>
+    ) : (
+      <>
+        <svg className="w-5 h-5 text-white group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+        <span className="text-white font-semibold">Add Bookmark</span>
+        <span className="absolute right-4 group-hover:translate-x-1 transition-transform">→</span>
+      </>
+    )}
+  </div>
 
-        {/* Ripple effect on click */}
-        <span className="absolute inset-0 overflow-hidden rounded-xl">
-          <span className="absolute inset-0 bg-white/20 transform scale-0 rounded-full opacity-0 group-active:scale-100 group-active:opacity-100 transition-all duration-500" />
-        </span>
-      </button>
-
+  {/* Ripple effect on click */}
+  <span className="absolute inset-0 overflow-hidden rounded-xl">
+    <span className="absolute inset-0 bg-white/20 transform scale-0 rounded-full opacity-0 group-active:scale-100 group-active:opacity-100 transition-all duration-500" />
+  </span>
+</button>
       {/* Helper text */}
       <p className="text-xs text-center text-gray-400 mt-4">
         Your bookmarks will sync instantly across all your devices

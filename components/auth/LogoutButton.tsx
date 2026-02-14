@@ -36,21 +36,21 @@ export default function LogoutButton() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       disabled={loading}
-      className="relative inline-flex items-center px-4 py-2 overflow-hidden rounded-xl group"
+      className="relative inline-flex items-center px-4 py-2 overflow-hidden rounded-xl group cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
     >
       {/* Animated background gradient */}
       <div className={`absolute inset-0 bg-gradient-to-r from-red-500 to-red-600 transition-all duration-500 ease-out
-        ${isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+        ${isHovered && !loading ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
       </div>
       
       {/* Border glow effect */}
-      <div className={`absolute inset-0 rounded-xl border-2 border-red-200 transition-all duration-300
-        ${isHovered ? 'border-red-400 scale-105' : 'border-gray-200'}`}>
+      <div className={`absolute inset-0 rounded-xl border-2 transition-all duration-300
+        ${isHovered && !loading ? 'border-red-400 scale-105' : 'border-gray-200'}`}>
       </div>
       
       {/* Shine effect */}
       <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full 
-        ${isHovered ? 'animate-shine' : ''}`}>
+        ${isHovered && !loading ? 'animate-shine' : ''}`}>
       </div>
       
       {/* Background blur dots */}
@@ -124,7 +124,7 @@ export default function LogoutButton() {
         )}
       </span>
 
-      {/* Ripple effect on click (via CSS pseudo-element) */}
+      {/* Ripple effect on click */}
       <span className="absolute inset-0 overflow-hidden rounded-xl">
         <span className="absolute inset-0 bg-white/20 transform scale-0 rounded-full opacity-0 group-active:scale-100 group-active:opacity-100 transition-all duration-500"></span>
       </span>

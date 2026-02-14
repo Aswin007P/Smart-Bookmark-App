@@ -58,6 +58,8 @@ export default function BookmarkList({
   useEffect(() => {
     if (!userId) return;
 
+    console.log("🔵 Setting up realtime subscription for user:", userId);
+
     const channel = supabase
       .channel(`bookmarks-${userId}`)
       .on(
@@ -69,6 +71,7 @@ export default function BookmarkList({
           filter: `user_id=eq.${userId}`
         },
         (payload) => {
+          console.log("🔵 Realtime INSERT received:", payload.new);
           setBookmarks(prev => {
             if (prev.some(b => b.id === payload.new.id)) return prev;
             return [payload.new as Bookmark, ...prev];
@@ -84,12 +87,16 @@ export default function BookmarkList({
           filter: `user_id=eq.${userId}`
         },
         (payload) => {
+          console.log("🔵 Realtime DELETE received:", payload.old);
           setBookmarks(prev => prev.filter(b => b.id !== payload.old.id));
         }
       )
-      .subscribe();
+      .subscribe((status) => {
+        console.log("🔵 Realtime subscription status:", status);
+      });
 
     return () => {
+      console.log("🔵 Cleaning up subscription");
       supabase.removeChannel(channel);
     };
   }, [userId]);
@@ -188,7 +195,7 @@ export default function BookmarkList({
             <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-lg">
               <button
                 onClick={() => setViewMode("grid")}
-                className={`p-2 rounded-lg transition-all duration-200 ${
+                className={`p-2 rounded-lg transition-all duration-200 cursor-pointer ${
                   viewMode === "grid" 
                     ? "bg-white text-blue-600 shadow-md scale-105" 
                     : "text-gray-500 hover:text-gray-700 hover:bg-white/50"
@@ -201,7 +208,7 @@ export default function BookmarkList({
               </button>
               <button
                 onClick={() => setViewMode("list")}
-                className={`p-2 rounded-lg transition-all duration-200 ${
+                className={`p-2 rounded-lg transition-all duration-200 cursor-pointer ${
                   viewMode === "list" 
                     ? "bg-white text-blue-600 shadow-md scale-105" 
                     : "text-gray-500 hover:text-gray-700 hover:bg-white/50"
@@ -247,7 +254,7 @@ export default function BookmarkList({
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm("")}
-                className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+                className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600 cursor-pointer"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -301,7 +308,7 @@ export default function BookmarkList({
             hover:shadow-xl hover:scale-110 hover:rotate-12
             active:scale-95 active:rotate-0
             focus:outline-none focus:ring-4 focus:ring-blue-500/50
-            transition-all duration-300 group/scroll z-10"
+            transition-all duration-300 group/scroll z-10 cursor-pointer"
           title="Scroll to top"
         >
           <svg className="w-5 h-5 group-hover/scroll:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
